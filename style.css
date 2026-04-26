@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --fav-color: #fef08a; /* Yellow highlight */
+    --allergy-color: #fca5a5; /* Red highlight */
+    --radius: 1.5rem;
+    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 500px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    color: white;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.025em;
+}
+
+.school-info {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+}
+
+.date-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+input[type="date"] {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--text-main);
+    width: 100%;
+    outline: none;
+    cursor: pointer;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+button {
+    flex: 1;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+button.secondary {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--glass-border);
+}
+
+button.secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.meal-content {
+    background: var(--card-bg);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    color: var(--text-main);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    min-height: 200px;
+}
+
+.meal-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meal-list {
+    list-style: none;
+}
+
+.meal-item {
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meal-item:hover {
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.meal-item.favorite {
+    background: var(--fav-color);
+    border-color: #facc15;
+}
+
+.meal-item.allergy {
+    background: var(--allergy-color);
+    border-color: #f87171;
+    color: #991b1b;
+}
+
+.meal-item .allergy-tag {
+    font-size: 0.7rem;
+    background: rgba(0,0,0,0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: var(--primary);
+    border-radius: 50%;
+    margin: 0 5px;
+    animation: bounce 0.6s infinite alternate;
+}
+
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+    to { transform: translateY(-10px); }
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-close {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+}
+
+.allergy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.allergy-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.allergy-option input {
+    width: 16px;
+    height: 16px;
+}
+
+.allergy-option.active {
+    background: #fee2e2;
+    border-color: #fca5a5;
+}
+
+.empty-msg {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 2rem 0;
+}
+
+footer {
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    text-align: center;
+    opacity: 0.7;
+}
